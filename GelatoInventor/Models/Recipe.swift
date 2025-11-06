@@ -23,6 +23,9 @@ struct Recipe {
     @Guide(description: "A list of steps to prepare the recipe. Keep it short and simple.", .maximumCount(40))
     var steps: [String] = []
     
+    @Guide(description: "The allergies the gelato is free of, if any")
+    var allergies: [Allergy]
+    
     @Generable
     struct Ingredient {
         @Guide(description: "Quantity of the ingredient, like '2 cups' or '1 tablespoon'")
@@ -31,6 +34,8 @@ struct Recipe {
         @Guide(description: "Name of ingredient, like 'flour' or 'sugar'")
         var name: String
     }
+
+    
     
     @Generable
     struct IngredientQuantity {

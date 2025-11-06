@@ -13,6 +13,7 @@ struct GelatoPreviewView: View {
     
     var taste: String
     var ingredients: [Ingredient]
+    var allergies: [Allergy]
     
     @State private var recipe: Recipe.PartiallyGenerated?
     
@@ -40,6 +41,9 @@ struct GelatoPreviewView: View {
                         if let steps = recipe.steps, !steps.isEmpty {
                             StepsView(steps: steps)
                         }
+                        if let allergies = recipe.allergies, !allergies.isEmpty {
+                           AllergyBadgeView(allergies: allergies)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -58,6 +62,7 @@ struct GelatoPreviewView: View {
         
         I would like to make a new gelato with this ingredients
         And I want my gelato to be: like eating a wacky, sweet gelato
+        I am allergic to peanuts so please do not include them in the recipe
         
         The response should include the name of the recipe, a brief description, and a list of ingredients.
         
@@ -82,6 +87,7 @@ struct GelatoPreviewView: View {
                         \(ingredients.map { "- \($0.name)" }.joined(separator: "\n"))
                         
                         And I want my gelato to be: \(taste)
+                        And I am allergic to \(allergies)
                     """
             do {
                 let response = try await session.respond(to: prompt, generating: Recipe.self)

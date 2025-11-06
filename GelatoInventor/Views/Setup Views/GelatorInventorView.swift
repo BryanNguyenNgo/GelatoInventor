@@ -12,6 +12,7 @@ struct GelatoInventorView: View {
     
     @State private var ingredientCategory: Ingredient.Category = .flavour
     @State private var selectedIngredients: [Ingredient] = []
+    @State private var selectedAllergies: [Allergy] = []
     
     @State private var taste = ""
     
@@ -26,13 +27,15 @@ struct GelatoInventorView: View {
                             .padding(.horizontal)
                         // 3 type of customisations they can make to customise their gelato
                         IngredientsPickerView(selectedIngredients: $selectedIngredients)
+                        AllergiesPickerView(selectedAllergies: $selectedAllergies)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 80)
                 }
+                
                 // goes to this page after pressing generate button
                 NavigationLink {
-                    GelatoPreviewView(taste: taste, ingredients: selectedIngredients)
+                    GelatoPreviewView(taste: taste, ingredients: selectedIngredients, allergies: selectedAllergies)
                 } label: {
                     HStack {
                         Image(systemName: "sparkles")

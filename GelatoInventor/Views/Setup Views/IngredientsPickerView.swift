@@ -17,7 +17,6 @@ struct IngredientsPickerView: View {
             .font(.headline)
             .padding(.horizontal)
             .padding(.top)
-        
         Picker("Ingredient Category", selection: $ingredientCategory) {
             ForEach(Ingredient.Category.allCases, id: \.self) { category in
                 Text(category.description)
