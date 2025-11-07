@@ -16,7 +16,7 @@ struct AllergyBadgeView: View {
                 .font(.headline)
                 .padding(.horizontal)
             
-            VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 4) {
                 ForEach(allergies.compactMap { $0 }) { allergy in
                     // unwraps properties safely
                     let name = allergy.name
